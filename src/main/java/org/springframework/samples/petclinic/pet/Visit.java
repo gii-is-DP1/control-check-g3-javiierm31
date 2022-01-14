@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.pet;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
@@ -114,13 +116,16 @@ public class Visit extends BaseEntity {
 		this.pet = pet;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "recovery_room_id")
+	RecoveryRoom recoveryRoom;
+	
 	public RecoveryRoom getRecoveryRoom() {
-		// To be implemented
-		return null;
+		return this.recoveryRoom;
 	}
 
 	public void setRecoveryRoom(RecoveryRoom room) {
-		// To be implemented
+		this.recoveryRoom = room;
 	}
 
 }
